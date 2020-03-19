@@ -1,0 +1,55 @@
+name: Auto Build Hugo Static Files
+
+on:
+  push:
+    branches:
+      - master
+  repository_dispatch:
+      types: [article_update]
+
+jobs:
+  build:
+    name: hugo generate
+    runs-on: [macos]
+    steps:
+      - uses: actions/checkout@master
+          
+      - name: Install Hugo
+        run: |
+          brew update
+          brew install hugo
+          
+      - name: Clone Articles repo
+#         working-directory: content
+        run: |
+          git clone https://${{secrets.USER_TOKEN}}@github.com/howel52/article.git content
+          
+      - name: Generate static file
+        run: |
+          hugo -D
+          
+      - name: Set git config in public path
+        working-directory: public
+        run: |
+          echo ${{secrets.USER_NAME}}
+          git init
+          git config --global user.name "${{secrets.USER_NAME}}"
+          git config --global user.email "${{secrets.USER_EMAIL}}"
+
+      - name: Checkout gh-pages
+        working-directory: public
+        run: |
+          git checkout --orphan gh-pages
+
+      - name: Add CNAME
+        working-directory: public
+        run: |
+          echo "${{secrets.CNAME}}" > CNAME
+
+      - name: Git commit and push
+        working-directory: public
+        run: |
+          git add .    
+          git commit -m "[auto]: generate site"
+          git push "https://${{secrets.USER_NAME}}:${{secrets.USER_TOKEN}}@github.com/${{secrets.USER_NAME}}/${{secrets.REPO_NAME}}.git" gh-pages -f
+          

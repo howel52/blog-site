@@ -1,0 +1,4 @@
+[submodule "content"]
+	path = content
+	url = https://github.com/howel52/article.git
+
