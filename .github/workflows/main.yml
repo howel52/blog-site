@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: hugo generate
-    runs-on: [macos]
+    runs-on: macos
     steps:
       - uses: actions/checkout@master
           
