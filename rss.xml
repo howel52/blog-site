@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Howel&#39;s House</title>
+        <link>/</link>
+        <description>Howels lifecycle</description>
+        <generator>Hugo 0.73.0 https://gohugo.io/</generator>
+        
+            <language>en</language>
+        
+        
+            <managingEditor>wuhao.52@outlook.com (howel52)</managingEditor>
+        
+        
+            <webMaster>wuhao.52@outlook.com (howel52)</webMaster>
+        
+        
+        <lastBuildDate>Sat, 04 Jul 2020 05:08:31 +0000</lastBuildDate>
+        
+            <atom:link rel="self" type="application/rss+xml" href="/rss.xml" />
+        
+        
+    </channel>
+</rss>
